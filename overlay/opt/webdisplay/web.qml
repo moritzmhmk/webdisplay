@@ -11,6 +11,10 @@ Window {
         id: webview
         url: "http://google.de"
         anchors.fill: parent              
+        onLoadingChanged: {
+            if (loadRequest.status == WebView.LoadFailedStatus)
+                reload()
+        }
         MouseArea {         
             id: mousearea                    
             anchors.fill: parent             
