@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Window 2.0
 import QtWebKit 3.0
 
+import "webDisplayConfig.js" as Config
+
 Window {
   width: 800
   height: 600
@@ -39,7 +41,7 @@ Window {
   }
   WebView {
     id: webview
-    url: "http://google.de"
+    url: Config.url 
     anchors.fill: parent
     onLoadingChanged: {
       if (loadRequest.status == WebView.LoadFailedStatus)
