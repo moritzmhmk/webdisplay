@@ -1,0 +1,6 @@
+11a12
+>       "webDisplayConfig.js",
+12a14,16
+>     }
+>     file wpa_supplicant/wpa_supplicant-wlan0.conf {
+>       image = "wpa_supplicant/wpa_supplicant-wlan0.conf"
