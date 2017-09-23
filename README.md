@@ -1,6 +1,13 @@
 # WebDisplay
 
-## Build Instructions
+## Installation
+
+### Download Release
+
+Download a pre-build [release](https://github.com/moritzmhmk/webdisplay/releases) and flash it to a sd card (e.g. using [Etcher](https://etcher.io/))
+
+### Build a custom version
+
 Clone Repo and submodules
 ```bash
 git clone https://github.com/moritzmhmk/webdisplay
@@ -9,7 +16,7 @@ git submodule init
 git submodule update
 ```
 
-Run `make xconfig` optionally make changes and save then close window.
+Run `make xconfig`, make changes, save and then close window.
 
 Run `make all` and wait about 2h :coffee:
 
