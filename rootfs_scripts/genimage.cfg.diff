@@ -1,6 +1,12 @@
 11a12
 >       "webDisplayConfig.js",
-12a14,16
+12a14,22
 >     }
 >     file wpa_supplicant/wpa_supplicant-wlan0.conf {
 >       image = "wpa_supplicant/wpa_supplicant-wlan0.conf"
+>     }
+>     file overlays/hyperpixel.dtbo {
+>       image = "overlays/hyperpixel.dtbo"
+>     }
+>     file overlays/hyperpixel-gpio-backlight.dtbo {
+>       image = "overlays/hyperpixel-gpio-backlight.dtbo"
