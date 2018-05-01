@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
-import QtWebKit 3.0
+import QtWebEngine 1.1
 
 import "webDisplayConfig.js" as Config
 
@@ -39,32 +39,40 @@ Window {
     z: webview.z + 1
     visible: webview.loading
   }
-  WebView {
-    id: webview
-    url: Config.url 
+  MouseArea {
+    id: mousearea
     anchors.fill: parent
-    onLoadingChanged: {
-      if (loadRequest.status == WebView.LoadFailedStatus)
-      reload()
+    z: webview.z + 1
+    hoverEnabled: true
+    acceptedButtons: Qt.RightButton
+    onClicked: {
+      if (mouse.button == Qt.RightButton)
+      webview.reload()
     }
-    MouseArea {
-      id: mousearea
-      anchors.fill: parent
-      hoverEnabled: true
-      acceptedButtons: Qt.RightButton
-      onClicked: {
-        if (mouse.button == Qt.RightButton)
-        webview.reload()
+    onPositionChanged: {
+      mouseTimer.restart()
+      cursorShape = Qt.ArrowCursor
+    }
+    Timer {
+      id: mouseTimer
+      interval: 7000; running: true; repeat: false
+      onTriggered: mousearea.cursorShape = Qt.BlankCursor
+    }
+  }
+  WebEngineView {
+    id: webview
+    anchors.fill: parent
+    url: Config.url 
+    userScripts: [
+      WebEngineScript {
+        injectionPoint: WebEngineScript.DocumentCreation
+        worldId: WebEngineScript.MainWorld
+        sourceCode: Config.userScript
       }
-      onPositionChanged: {
-        mouseTimer.restart()
-        cursorShape = Qt.ArrowCursor
-      }
-      Timer {
-        id: mouseTimer
-        interval: 7000; running: true; repeat: false
-        onTriggered: mousearea.cursorShape = Qt.BlankCursor
-      }
+    ]
+    onLoadingChanged: {
+      if (loadRequest.status == WebEngineView.LoadFailedStatus)
+      reload()
     }
   }
 }
