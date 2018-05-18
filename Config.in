@@ -1,7 +1,7 @@
-# make the variant name available as a Config.in variable
-#
-# you can use BR2SM_PROJECT_NAME to have some options only appear for some variants
-#
-# config BR2SM_PROJECT_NAME
-#	string
-#	option env="PROJECT_NAME"
+source "$BR2_EXTERNAL_BUILDROOT_SUBMODULE_PATH/package/wpewebkit/Config.in"
+
+if BR2_PACKAGE_WPEWEBKIT
+source "$BR2_EXTERNAL_BUILDROOT_SUBMODULE_PATH/package/wpebackend/Config.in"
+source "$BR2_EXTERNAL_BUILDROOT_SUBMODULE_PATH/package/wpebackend-rdk/Config.in"
+source "$BR2_EXTERNAL_BUILDROOT_SUBMODULE_PATH/package/wpelauncher/Config.in"
+endif
